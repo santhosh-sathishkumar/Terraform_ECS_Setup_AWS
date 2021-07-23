@@ -1,6 +1,6 @@
 # Create a ECR repo in AWS
 
-resource "aws_ecr_repository" "main-ecr" {
+resource "aws_ecr_repository" "reactapp-ecr" {
     name = "ecr-repo-reactjs"
     image_tag_mutability = "MUTABLE"
 }
@@ -8,7 +8,7 @@ resource "aws_ecr_repository" "main-ecr" {
 # Add life cycle policy to the repo, to delete older images
 
 resource "aws_ecr_lifecycle_policy" "lifecyle" {
-    repository = aws_ecr_repository.main-ecr.id
+    repository = aws_ecr_repository.reactapp-ecr.id
 
     policy = <<EOF
     {
