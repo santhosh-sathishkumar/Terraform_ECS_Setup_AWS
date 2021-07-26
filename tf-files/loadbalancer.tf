@@ -6,7 +6,7 @@ resource "aws_lb" "ecs-alb" {
     load_balancer_type = "application"
     security_groups = [aws_security_group.sg-loadbalancer.id]
     subnets = aws_subnet.public.*.id 
-    enable_deletion_protection = true
+    enable_deletion_protection = false
 
 }
 

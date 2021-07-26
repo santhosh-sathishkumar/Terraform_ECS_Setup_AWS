@@ -10,11 +10,12 @@ variable "az_count" {
 
 variable "app_port" {
     description = "Port where application exopsed by container"
-    default = "3000"
+    default = "80"
 }
 
-variable "app_name" {
-    description = "Application Name"
+variable "cluster_name" {
+    description = "Name for the cluster"
+    default = "counter-app"
 }
 
 variable "albname" {
@@ -22,18 +23,16 @@ variable "albname" {
     default = "albecs" 
 }
 
-variable "app_image" {
-    description = "images url"
-}
-
 variable "fargate_cpu" {
     description = "Amount of CPU required for the task"
+    default     = "1024"
 }
 
 variable "fargate_memory" {
     description = "Amount of memor required for task"
+    default     = "2048"
 }
 
 variable "tag" {
-    description = "Tag for the project"
+    description = "Enter the image tag to run"
 }

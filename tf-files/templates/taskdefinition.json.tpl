@@ -8,8 +8,8 @@
     "logConfiguration": {
         "logDriver": "awslogs",
         "options": {
-          "awslogs-group": "/ecs/cb-app",
-          "awslogs-region": "${region}",
+          "awslogs-group": "/ecs/helloworld",
+          "awslogs-region": "${aws_region}",
           "awslogs-stream-prefix": "ecs"
         }
     },

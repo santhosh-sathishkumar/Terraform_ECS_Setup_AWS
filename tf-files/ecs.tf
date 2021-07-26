@@ -1,7 +1,7 @@
 # Create ECS cluster for tasks to run
 
 resource "aws_ecs_cluster" "main-ecs" {
-    name = "${var.app_name}-cluster"
+    name = "${var.cluster-name}-cluster"
   
 }
 
@@ -37,7 +37,7 @@ resource "aws_ecs_cluster" "main-ecs" {
 } */
 
 data "aws_ecr_repository" "react-repo" {
-    name = "ecr-repo-reactjs"
+    name = "react-js"
 }
 data "template_file" "helloworld" {
     template = file("./templates/taskdefinition.json.tpl")
@@ -70,8 +70,9 @@ resource "aws_ecs_service" "helloworld" {
     launch_type = "FARGATE"
 
     network_configuration {
-      security_groups = [ aws_security_group.sg-loadbalancer.id ]
+      security_groups = [ aws_security_group.sg-loadbalancer.id, aws_security_group.sg-ecs-task.id ]
       subnets = aws_subnet.private.*.id
+      assign_public_ip = false
     }
 
     load_balancer {
